@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="NutriPlate - Belajar makanan sehat dan bergizi secara interaktif: susun piringmu, kuis seru, kalkulator BMI, dan pelacak minum air." />
   <title>NutriPlate • Belajar Makanan Sehat & Bergizi</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥗</text></svg>" />
+  <link rel="icon" href="logo-sman71.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -17,7 +17,7 @@
 
   <!-- Navbar -->
   <header class="navbar">
-    <a href="#home" class="logo">🥗 <span>NutriPlate</span></a>
+    <a href="#home" class="logo"><img src="logo-sman71.png" alt="SMAN 71" /> <span>NutriPlate</span></a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#home" class="active">Beranda</a></li>
       <li><a href="#nutrisi">Nutrisi</a></li>
@@ -37,12 +37,12 @@
     <section class="hero" id="home">
       <div class="container hero-grid">
         <div class="reveal">
-          <span class="badge">✨ Belajar sehat jadi seru!</span>
+          <span class="badge">Belajar sehat jadi seru!</span>
           <h1>Makan <span class="gradient-text">Sehat</span>,<br />Hidup <span class="gradient-warm">Bertenaga</span> 💪</h1>
           <p>Yuk kenali gizi seimbang lewat pengalaman interaktif: susun piringmu sendiri, jawab kuis, hitung BMI, dan kumpulkan kebiasaan sehat setiap hari.</p>
           <div class="hero-btns">
             <a href="#piring" class="btn btn-primary">🍽️ Mulai Belajar</a>
-            <a href="#kuis" class="btn btn-ghost">🧠 Coba Kuis</a>
+            <a href="#kuis" class="btn btn-ghost">Kuis</a>
           </div>
           <div class="hero-stats">
             <div class="stat"><h3 data-count="5">0</h3><span>Fitur interaktif</span></div>
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="hero-visual reveal">
-          <div class="hero-circle">🥗</div>
+          <div class="hero-circle"><img src="logo-sman71.png" alt="Logo SMAN 71" /></div>
           <span class="float-food f1">🥑</span>
           <span class="float-food f2">🍎</span>
           <span class="float-food f3">🥕</span>
@@ -248,7 +248,7 @@
 
   <footer>
     <div class="container">
-      <div class="logo">🥗 <span>NutriPlate</span></div>
+      <div class="logo"><img src="logo-sman71.png" alt="SMAN 71" /> <span>NutriPlate</span></div>
       <p>Dibuat dengan 💚 untuk edukasi gizi. Informasi bersifat umum, bukan pengganti saran dokter/ahli gizi.</p>
       <p style="margin-top:6px">© <span id="year"></span> NutriPlate</p>
     </div>
@@ -377,153 +377,160 @@
     function updatePlate() {
       const p = $('#plate'); p.innerHTML = '';
       if (!plate.length) p.innerHTML = '<div class="empty">Piring masih kosong 🍽️</div>';
-      plate.forEach((f, i) => {
+      plate.forEach((it, i) => {
         const s = document.createElement('span');
-        s.className = 'item'; s.textContent = f.e; s.title = `${f.n} (klik untuk hapus)`;
+        s.className = 'item'; s.textContent = it.e; s.title = it.n + ' (ketuk untuk hapus)';
         s.onclick = () => { plate.splice(i, 1); updatePlate(); };
         p.appendChild(s);
       });
-      const count = c => plate.filter(f => f.cat === c).length;
-      Object.keys(TARGET).forEach(c => {
-        const pct = Math.min(100, Math.round(count(c) / TARGET[c] * 100));
+
+      const count = { karbo: 0, protein: 0, sayur: 0, buah: 0, junk: 0 };
+      let kcal = 0;
+      plate.forEach(it => { count[it.cat]++; kcal += it.k; });
+      ['karbo', 'protein', 'sayur', 'buah'].forEach(c => {
+        const pct = Math.min(100, Math.round(count[c] / TARGET[c] * 100));
         $('#bar-' + c).style.width = pct + '%';
         $('#pct-' + c).textContent = pct + '%';
       });
-      $('#kcal').textContent = plate.reduce((a, f) => a + f.k, 0);
-      giveFeedback(count);
-    }
-    function giveFeedback(count) {
-      const fb = $('#feedback'); fb.className = 'feedback';
-      if (!plate.length) { fb.textContent = 'Mulai pilih makanan di sebelah kiri 👈'; celebrated = false; return; }
-      const junk = count('junk');
-      const missing = Object.keys(TARGET).filter(c => count(c) < TARGET[c]);
-      const names = { karbo: 'makanan pokok 🍚', protein: 'lauk protein 🍗', sayur: 'sayuran 🥦', buah: 'buah 🍎' };
-      if (junk >= 2) { fb.classList.add('warn'); fb.textContent = `Hati-hati, ada ${junk} jajanan tinggi gula/lemak. Boleh sesekali, tapi jangan jadi kebiasaan ya! 🍔`; celebrated = false; return; }
-      if (!missing.length && junk === 0) {
-        fb.classList.add('great'); fb.textContent = '🎉 Luar biasa! Piringmu seimbang: ada pokok, lauk, sayur, dan buah.';
-        if (!celebrated) { confetti(); celebrated = true; } return;
+      $('#kcal').textContent = kcal;
+
+      const fb = $('#feedback');
+      fb.className = 'feedback';
+      let msg = '';
+      if (!plate.length) {
+        msg = 'Mulai pilih makanan di sebelah kiri 👈';
+      } else if (count.junk >= 2 || count.junk / plate.length > 0.34) {
+        msg = '🍔 Terlalu banyak jajanan manis/berminyak. Coba ganti dengan sayur dan buah!'; fb.classList.add('warn');
+      } else if (count.sayur + count.buah === 0) {
+        msg = '🥦 Piringmu belum ada sayur dan buah. Tambahkan ya!'; fb.classList.add('warn');
+      } else if (!count.protein) {
+        msg = '🍗 Belum ada lauk pauk. Tambahkan telur, ikan, atau tempe untuk protein.';
+      } else if (!count.karbo) {
+        msg = '🍚 Belum ada makanan pokok sebagai sumber energi.';
+      } else if (count.sayur < count.buah) {
+        msg = '🥕 Sayurnya sedikit lebih banyak dari buah ya, sesuai Isi Piringku.';
+      } else if (!count.buah) {
+        msg = '🍎 Hampir sempurna! Tambahkan sepotong buah.';
+      } else if (count.karbo >= TARGET.karbo && count.protein >= TARGET.protein && count.sayur >= TARGET.sayur && count.buah >= TARGET.buah && !count.junk) {
+        msg = '🎉 Hebat! Piringmu sudah seimbang dan bergizi!'; fb.classList.add('great');
+        if (!celebrated) { celebrated = true; confetti(); }
+      } else {
+        msg = '👍 Bagus, terus lengkapi sampai semua indikator penuh.';
       }
-      celebrated = false;
-      if (junk === 1) { fb.classList.add('warn'); fb.textContent = 'Satu jajanan masih oke sesekali. Seimbangkan dengan sayur dan buah ya! 🥗'; return; }
-      fb.textContent = `Tambahkan lagi ${names[missing[0]]} supaya piringmu lebih seimbang.`;
+      if (kcal > 800 && !fb.classList.contains('great')) msg += ' (Kalorinya sudah cukup tinggi.)';
+      fb.textContent = msg;
+      if (plate.length < 6) celebrated = false;
     }
-    $('#clearPlate').onclick = () => { plate = []; updatePlate(); };
+    $('#clearPlate').addEventListener('click', () => { plate = []; celebrated = false; updatePlate(); });
     renderTabs(); renderFoods(); updatePlate();
 
-    /* ---------- BMI ---------- */
+    /* ---------- BMI (kategori Kemenkes RI) ---------- */
     const wIn = $('#weight'), hIn = $('#height');
     function calcBMI() {
-      const w = +wIn.value, h = +hIn.value / 100;
-      $('#wOut').textContent = w; $('#hOut').textContent = hIn.value;
-      const bmi = w / (h * h);
+      const w = +wIn.value, h = +hIn.value;
+      $('#wOut').textContent = w; $('#hOut').textContent = h;
+      const m = h / 100, bmi = w / (m * m);
       $('#bmiNum').textContent = bmi.toFixed(1);
-      let cat, color, tip;
-      if (bmi < 17) { cat = 'Sangat Kurus'; color = '#3ea6ff'; tip = 'Perbanyak asupan energi & protein bergizi, dan konsultasikan ke ahli gizi.'; }
-      else if (bmi < 18.5) { cat = 'Kurus'; color = '#3ea6ff'; tip = 'Tambah porsi makan bergizi: pokok, lauk protein, dan camilan sehat seperti kacang & buah.'; }
-      else if (bmi <= 25) { cat = 'Normal'; color = '#22c55e'; tip = 'Pertahankan! Terus jaga pola makan seimbang dan aktif bergerak. 👏'; }
-      else if (bmi <= 27) { cat = 'Gemuk'; color = '#f5b301'; tip = 'Kurangi gula, gorengan, dan minuman manis. Perbanyak sayur & aktivitas fisik.'; }
-      else { cat = 'Obesitas'; color = '#ef4444'; tip = 'Disarankan berkonsultasi dengan dokter/ahli gizi untuk rencana makan yang aman.'; }
-      const badge = $('#bmiCat'); badge.textContent = cat; badge.style.background = color;
-      $('#bmiTip').textContent = tip;
-      const pos = Math.max(0, Math.min(100, (bmi - 15) / 20 * 100));
+
+      let cat, color, tip, pos;
+      if (bmi < 18.5) { cat = 'Kurus'; color = '#3ea6ff'; tip = 'Tambah asupan energi dan protein secara bertahap, dan konsultasikan bila perlu.'; pos = (bmi - 12) / 6.5 * 25; }
+      else if (bmi < 25) { cat = 'Normal'; color = '#22c55e'; tip = 'Pertahankan! Terus jaga pola makan seimbang dan aktif bergerak.'; pos = 25 + (bmi - 18.5) / 6.5 * 35; }
+      else if (bmi < 27) { cat = 'Gemuk'; color = '#f5b301'; tip = 'Kurangi gula, gorengan, dan minuman manis, serta perbanyak sayur dan gerak.'; pos = 60 + (bmi - 25) / 2 * 18; }
+      else { cat = 'Obesitas'; color = '#ef4444'; tip = 'Disarankan berkonsultasi dengan dokter atau ahli gizi untuk rencana yang aman.'; pos = 78 + (bmi - 27) / 8 * 22; }
+      pos = Math.max(2, Math.min(98, pos));
+
+      const c = $('#bmiCat'); c.textContent = cat; c.style.background = color;
       $('#pin').style.left = pos + '%';
-      const lo = (18.5 * h * h).toFixed(0), hi = (25 * h * h).toFixed(0);
-      $('#idealChip').textContent = `⚖️ Berat ideal: ${lo}–${hi} kg`;
-      $('#waterChip').textContent = `💧 Air: ± ${(w * 0.035).toFixed(1)} liter/hari`;
+      $('#bmiTip').textContent = tip;
+      $('#idealChip').textContent = `⚖️ Berat ideal: ${(18.5 * m * m).toFixed(0)}–${(24.9 * m * m).toFixed(0)} kg`;
+      $('#waterChip').textContent = `💧 Air: ± ${(w * 0.03).toFixed(1)} liter/hari`;
     }
-    wIn.addEventListener('input', calcBMI); hIn.addEventListener('input', calcBMI); calcBMI();
+    wIn.addEventListener('input', calcBMI); hIn.addEventListener('input', calcBMI);
+    calcBMI();
 
     /* ---------- Water tracker ---------- */
-    const todayKey = 'np-water-' + new Date().toISOString().slice(0, 10);
-    let water = parseInt(store.get(todayKey) || '0', 10) || 0;
+    const GLASSES = 8;
+    let water = Math.min(GLASSES, +(store.get('np-water-' + new Date().toDateString()) || 0));
     const glassWrap = $('#glasses');
-    for (let i = 0; i < 8; i++) {
-      const g = document.createElement('button');
-      g.className = 'glass'; g.setAttribute('aria-label', 'Gelas ' + (i + 1)); g.innerHTML = '<span>💧</span>';
+    for (let i = 0; i < GLASSES; i++) {
+      const g = document.createElement('div');
+      g.className = 'glass'; g.innerHTML = '<span>💧</span>';
       g.onclick = () => { water = (water === i + 1) ? i : i + 1; renderWater(true); };
       glassWrap.appendChild(g);
     }
     function renderWater(save) {
       $$('.glass').forEach((g, i) => g.classList.toggle('full', i < water));
-      const msgs = ['Yuk mulai minum! 🚰', 'Awal yang bagus!', 'Terus semangat!', 'Hampir separuh!', 'Setengah jalan! 💪', 'Lanjutkan!', 'Sedikit lagi!', 'Tinggal satu gelas lagi!', '🎉 Target tercapai! Tubuhmu terhidrasi.'];
-      $('#waterMsg').textContent = `${water} / 8 gelas • ${water * 250} ml — ${msgs[water]}`;
-      if (save) { store.set(todayKey, water); if (water === 8) confetti(['💧', '💦', '🎉'], 28); }
+      const msgs = ['Yuk mulai minum! 🚰', 'Awal yang bagus! 💦', 'Terus lanjut! 💪', 'Hampir setengah! 🌊', 'Setengah jalan! 🎯', 'Keren, sedikit lagi! 🔥', 'Hampir sampai! 🏃', 'Satu gelas lagi! 🥤'];
+      $('#waterMsg').textContent = water >= GLASSES ? '🎉 Target tercapai! Tubuhmu terhidrasi dengan baik.' : `${water} / ${GLASSES} gelas • ${msgs[water]}`;
+      if (save) {
+        store.set('np-water-' + new Date().toDateString(), water);
+        if (water === GLASSES) confetti(['💧', '💦', '🥤', '🎉'], 28);
+      }
     }
-    $('#waterReset').onclick = () => { water = 0; renderWater(true); };
+    $('#waterReset').addEventListener('click', () => { water = 0; renderWater(true); });
     renderWater(false);
 
     /* ---------- Quiz ---------- */
     const QUIZ = [
-      { q: 'Zat gizi apa yang menjadi sumber energi utama bagi tubuh?', o: ['Karbohidrat', 'Vitamin', 'Mineral', 'Serat'], a: 0, e: 'Karbohidrat diubah menjadi glukosa yang dipakai otak dan otot sebagai bahan bakar.' },
-      { q: 'Dalam konsep "Isi Piringku", bagian terbesar piring diisi oleh…', o: ['Nasi', 'Sayur & buah', 'Daging', 'Gorengan'], a: 1, e: 'Sayur dan buah mengisi sekitar setengah piring karena kaya vitamin, mineral, dan serat.' },
-      { q: 'Manakah yang merupakan sumber protein nabati?', o: ['Kentang', 'Apel', 'Tempe', 'Roti tawar'], a: 2, e: 'Tempe dari kedelai kaya protein, dan lebih sehat lagi jika dikukus atau dipanggang.' },
-      { q: 'Berapa kebutuhan air putih yang umum dianjurkan untuk dewasa per hari?', o: ['1 gelas', 'Sekitar 8 gelas (±2 liter)', '15 gelas', 'Tidak perlu minum jika tidak haus'], a: 1, e: 'Kebutuhan tiap orang berbeda, tetapi sekitar 2 liter per hari adalah patokan umum.' },
-      { q: 'Vitamin C paling banyak ditemukan pada…', o: ['Jeruk & jambu biji', 'Nasi putih', 'Minyak goreng', 'Gula pasir'], a: 0, e: 'Jeruk, jambu biji, dan paprika kaya vitamin C yang membantu daya tahan tubuh.' }
+      { q: 'Zat gizi apa yang menjadi sumber energi utama tubuh?', o: ['Karbohidrat', 'Vitamin', 'Mineral', 'Serat'], a: 0, ex: 'Karbohidrat diubah menjadi glukosa, bahan bakar utama otak dan otot.' },
+      { q: 'Dalam konsep Isi Piringku, bagian terbesar piring diisi oleh…', o: ['Lauk pauk', 'Sayur dan buah', 'Nasi saja', 'Gorengan'], a: 1, ex: 'Sayur dan buah mengisi sekitar setengah piring.' },
+      { q: 'Berapa gelas air putih yang dianjurkan untuk dikonsumsi per hari (rata-rata)?', o: ['2 gelas', '4 gelas', '8 gelas', '20 gelas'], a: 2, ex: 'Sekitar 8 gelas (± 2 liter), tergantung berat badan dan aktivitas.' },
+      { q: 'Manakah sumber protein nabati?', o: ['Tempe', 'Nasi putih', 'Apel', 'Madu'], a: 0, ex: 'Tempe dan tahu berasal dari kedelai, sumber protein nabati yang baik.' },
+      { q: 'Fungsi utama serat bagi tubuh adalah…', o: ['Membangun otot', 'Melancarkan pencernaan', 'Menambah tinggi badan', 'Menghasilkan vitamin D'], a: 1, ex: 'Serat dari sayur dan buah membantu pencernaan tetap lancar.' }
     ];
     let qi = 0, score = 0;
-    const qbox = $('#quizBox');
+    const quizBox = $('#quizBox');
     function renderQuiz() {
-      if (qi >= QUIZ.length) return renderResult();
-      const Q = QUIZ[qi];
-      qbox.innerHTML = `
+      if (qi >= QUIZ.length) return renderFinal();
+      const q = QUIZ[qi];
+      quizBox.innerHTML = `
         <div class="quiz-top"><span>Pertanyaan ${qi + 1} / ${QUIZ.length}</span><span>⭐ Skor: ${score}</span></div>
-        <div class="progress"><i style="width:${(qi / QUIZ.length) * 100}%"></i></div>
-        <h3 class="q-text">${Q.q}</h3>
-        <div class="options">${Q.o.map((t, i) => `<button class="option" data-i="${i}"><b>${'ABCD'[i]}</b>${t}</button>`).join('')}</div>
+        <div class="progress"><i style="width:${qi / QUIZ.length * 100}%"></i></div>
+        <h3 class="q-text">${q.q}</h3>
+        <div class="options">${q.o.map((t, i) => `<button class="option" data-i="${i}"><b>${'ABCD'[i]}</b>${t}</button>`).join('')}</div>
         <div class="explain" id="explain"></div>
-        <div class="quiz-next" id="qNext"><button class="btn btn-primary">${qi === QUIZ.length - 1 ? 'Lihat Hasil 🏆' : 'Lanjut →'}</button></div>`;
-      $$('.option', qbox).forEach(btn => btn.onclick = () => answer(+btn.dataset.i));
-      $('#qNext button').onclick = () => { qi++; renderQuiz(); };
+        <div class="quiz-next" id="quizNext"><button class="btn btn-primary" id="nextBtn">${qi === QUIZ.length - 1 ? 'Lihat Hasil 🏆' : 'Lanjut →'}</button></div>`;
+      $$('.option', quizBox).forEach(b => b.onclick = () => answer(+b.dataset.i));
     }
     function answer(i) {
-      const Q = QUIZ[qi]; const ok = i === Q.a;
-      if (ok) score++;
-      $$('.option', qbox).forEach((b, idx) => {
-        b.disabled = true;
-        if (idx === Q.a) b.classList.add('correct');
-        else if (idx === i) b.classList.add('wrong');
-      });
-      const ex = $('#explain'); ex.classList.add('show');
-      ex.innerHTML = `${ok ? '✅ <b>Benar!</b>' : '❌ <b>Belum tepat.</b>'} ${Q.e}`;
-      $('#qNext').classList.add('show');
-      if (ok) toast('Keren! +1 poin ⭐');
+      const q = QUIZ[qi], opts = $$('.option', quizBox);
+      opts.forEach(b => b.disabled = true);
+      opts[q.a].classList.add('correct');
+      if (i === q.a) { score++; } else { opts[i].classList.add('wrong'); }
+      const ex = $('#explain');
+      ex.textContent = (i === q.a ? '✅ Benar! ' : '❌ Kurang tepat. ') + q.ex;
+      ex.classList.add('show');
+      $('#quizNext').classList.add('show');
+      $('.progress i', quizBox).style.width = (qi + 1) / QUIZ.length * 100 + '%';
+      $('#nextBtn').onclick = () => { qi++; renderQuiz(); };
     }
-    function renderResult() {
-      const pct = score / QUIZ.length;
-      const [emoji, title, msg] = pct === 1 ? ['🏆', 'Master Gizi!', 'Sempurna! Kamu paham betul soal makanan sehat.']
-        : pct >= 0.6 ? ['🌟', 'Pintar Banget!', 'Hasil bagus! Sedikit lagi jadi ahli gizi.']
-        : ['🌱', 'Terus Belajar!', 'Tidak apa-apa, pelajari lagi bagian Nutrisi di atas lalu coba lagi.'];
-      qbox.innerHTML = `
-        <div class="progress"><i style="width:100%"></i></div>
-        <div class="final"><div class="big">${emoji}</div><h3 class="gradient-text">${title}</h3>
-        <p>Skormu <b>${score} / ${QUIZ.length}</b>. ${msg}</p>
-        <button class="btn btn-primary" id="retry">🔄 Main Lagi</button></div>`;
-      if (pct >= 0.6) confetti();
+    function renderFinal() {
+      const r = score / QUIZ.length;
+      const [big, title] = r === 1 ? ['🏆', 'Sempurna!'] : r >= 0.6 ? ['🌟', 'Bagus sekali!'] : ['🌱', 'Ayo belajar lagi!'];
+      quizBox.innerHTML = `<div class="final"><div class="big">${big}</div><h3>${title}</h3><p>Skormu ${score} dari ${QUIZ.length}.</p><button class="btn btn-primary" id="retry">↺ Main Lagi</button></div>`;
+      if (r >= 0.6) confetti();
       $('#retry').onclick = () => { qi = 0; score = 0; renderQuiz(); };
     }
     renderQuiz();
 
-    /* ---------- Myths ---------- */
+    /* ---------- Mitos vs Fakta ---------- */
     const MYTHS = [
-      ['Makan malam bikin gemuk.', 'Yang memengaruhi berat badan adalah total kalori dalam sehari dan jenis makanannya, bukan semata jam makannya. Hindari porsi berlebihan menjelang tidur.'],
-      ['Semua lemak itu jahat.', 'Tubuh butuh lemak sehat dari alpukat, kacang, dan ikan. Yang perlu dibatasi adalah lemak jenuh dan lemak trans berlebih.'],
-      ['Jus buah sama saja dengan buah utuh.', 'Buah utuh mengandung lebih banyak serat dan membuat kenyang lebih lama. Jus, terutama yang ditambah gula, lebih cepat menaikkan gula darah.'],
-      ['Nasi putih harus dihindari total.', 'Nasi tetap sumber energi yang baik bila porsinya pas dan dipadukan dengan lauk, sayur, dan buah.'],
-      ['Sarapan tidak penting.', 'Sarapan bergizi membantu energi dan fokus, terutama bagi anak sekolah. Pilih menu seimbang, bukan hanya yang manis.'],
-      ['Makanan "rendah lemak" pasti sehat.', 'Kadang gula atau garam ditambahkan untuk menggantikan rasa. Selalu baca label informasi nilai gizi.']
+      ['Makan malam bikin gemuk.', 'Berat badan dipengaruhi total kalori sehari dan aktivitas, bukan semata jam makan. Pilih porsi dan menu yang wajar.'],
+      ['Semua lemak itu jahat.', 'Lemak tak jenuh dari alpukat, kacang, dan ikan justru menyehatkan. Yang perlu dibatasi adalah lemak jenuh dan trans berlebihan.'],
+      ['Nasi putih harus dihindari total.', 'Nasi adalah sumber energi. Yang penting porsinya seimbang dengan sayur dan lauk.'],
+      ['Jus buah sama saja dengan buah utuh.', 'Buah utuh mengandung lebih banyak serat dan lebih mengenyangkan. Jus sering ditambah gula.'],
+      ['Skip sarapan membantu kurus.', 'Melewatkan sarapan bisa membuat lapar berlebihan dan ngemil lebih banyak, serta menurunkan konsentrasi.'],
+      ['Makanan "rendah lemak" pasti sehat.', 'Cek labelnya. Produk rendah lemak kadang mengandung gula atau garam tambahan yang tinggi.']
     ];
     const mg = $('#mythGrid');
     MYTHS.forEach(([m, f]) => {
       const d = document.createElement('div');
       d.className = 'card myth reveal';
-      d.innerHTML = `<span class="label">${'❌ MITOS'}</span>
-        <h4 class="claim">"${m}"</h4><p class="hint claim">👆 Ketuk untuk lihat faktanya</p>
-        <div class="fact"><h4>✅ Fakta</h4><p>${f}</p></div>`;
-      d.onclick = () => {
-        d.classList.toggle('revealed');
-        $('.label', d).textContent = d.classList.contains('revealed') ? '✅ FAKTA' : '❌ MITOS';
-      };
+      d.innerHTML = `<span class="label">❌ MITOS</span><h4 class="claim">${m}</h4><span class="hint">Ketuk untuk lihat fakta 👆</span><h4 class="fact">✅ Fakta</h4><p class="fact">${f}</p>`;
+      d.onclick = () => d.classList.toggle('revealed');
       mg.appendChild(d); rev.observe(d);
+      d.querySelector('.label').textContent = '❌ MITOS';
+      d.addEventListener('click', () => { d.querySelector('.label').textContent = d.classList.contains('revealed') ? '✅ FAKTA' : '❌ MITOS'; });
     });
   </script>
 </body>
