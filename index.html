@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="NutriPlate - Belajar makanan sehat dan bergizi secara interaktif: susun piringmu, kuis seru, kalkulator BMI, dan pelacak minum air." />
   <title>NutriPlate • Belajar Makanan Sehat & Bergizi</title>
-  <link rel="icon" href="logo-sman71.png" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥗</text></svg>" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -17,7 +17,7 @@
 
   <!-- Navbar -->
   <header class="navbar">
-    <a href="#home" class="logo"><img src="logo-sman71.png" alt="SMAN 71" /> <span>NutriPlate</span></a>
+    <a href="#home" class="logo">🥗 <span>NutriPlate</span></a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#home" class="active">Beranda</a></li>
       <li><a href="#nutrisi">Nutrisi</a></li>
@@ -27,7 +27,7 @@
       <li><a href="#mitos">Mitos</a></li>
     </ul>
     <div class="nav-actions">
-      <button class="icon-btn" id="themeBtn" aria-label="Ganti tema">🌙</button>
+      <button class="icon-btn theme-logo" id="themeBtn" aria-label="Ganti tema"><img src="logo-sman71.png" alt="Logo SMAN 71" /></button>
       <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">☰</button>
     </div>
   </header>
@@ -42,7 +42,7 @@
           <p>Yuk kenali gizi seimbang lewat pengalaman interaktif: susun piringmu sendiri, jawab kuis, hitung BMI, dan kumpulkan kebiasaan sehat setiap hari.</p>
           <div class="hero-btns">
             <a href="#piring" class="btn btn-primary">🍽️ Mulai Belajar</a>
-            <a href="#kuis" class="btn btn-ghost">Kuis</a>
+            <a href="#kuis" class="btn btn-ghost">Coba Kuis</a>
           </div>
           <div class="hero-stats">
             <div class="stat"><h3 data-count="5">0</h3><span>Fitur interaktif</span></div>
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="hero-visual reveal">
-          <div class="hero-circle"><img src="logo-sman71.png" alt="Logo SMAN 71" /></div>
+          <div class="hero-circle">🥗</div>
           <span class="float-food f1">🥑</span>
           <span class="float-food f2">🍎</span>
           <span class="float-food f3">🥕</span>
@@ -248,7 +248,7 @@
 
   <footer>
     <div class="container">
-      <div class="logo"><img src="logo-sman71.png" alt="SMAN 71" /> <span>NutriPlate</span></div>
+      <div class="logo">🥗 <span>NutriPlate</span></div>
       <p>Dibuat dengan 💚 untuk edukasi gizi. Informasi bersifat umum, bukan pengganti saran dokter/ahli gizi.</p>
       <p style="margin-top:6px">© <span id="year"></span> NutriPlate</p>
     </div>
@@ -287,7 +287,6 @@
     const themeBtn = $('#themeBtn');
     function setTheme(t) {
       document.documentElement.setAttribute('data-theme', t);
-      themeBtn.textContent = t === 'dark' ? '☀️' : '🌙';
       store.set('np-theme', t);
     }
     setTheme(store.get('np-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
