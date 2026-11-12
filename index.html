@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NutriPlate - Belajar makanan sehat dan bergizi secara interaktif: susun piringmu, kuis seru, kalkulator BMI, dan pelacak minum air." />
+  <title>NutriPlate • Belajar Makanan Sehat & Bergizi</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥗</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Background -->
+  <div class="blobs" aria-hidden="true">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <a href="#home" class="logo">🥗 <span>NutriPlate</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="active">Beranda</a></li>
+      <li><a href="#nutrisi">Nutrisi</a></li>
+      <li><a href="#piring">Susun Piring</a></li>
+      <li><a href="#bmi">Cek BMI</a></li>
+      <li><a href="#kuis">Kuis</a></li>
+      <li><a href="#mitos">Mitos</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" aria-label="Ganti tema">🌙</button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="badge">✨ Belajar sehat jadi seru!</span>
+          <h1>Makan <span class="gradient-text">Sehat</span>,<br />Hidup <span class="gradient-warm">Bertenaga</span> 💪</h1>
+          <p>Yuk kenali gizi seimbang lewat pengalaman interaktif: susun piringmu sendiri, jawab kuis, hitung BMI, dan kumpulkan kebiasaan sehat setiap hari.</p>
+          <div class="hero-btns">
+            <a href="#piring" class="btn btn-primary">🍽️ Mulai Belajar</a>
+            <a href="#kuis" class="btn btn-ghost">🧠 Coba Kuis</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat"><h3 data-count="5">0</h3><span>Fitur interaktif</span></div>
+            <div class="stat"><h3 data-count="30">0</h3><span>Makanan dipelajari</span></div>
+            <div class="stat"><h3 data-count="100" data-suffix="%">0</h3><span>Gratis & seru</span></div>
+          </div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="hero-circle">🥗</div>
+          <span class="float-food f1">🥑</span>
+          <span class="float-food f2">🍎</span>
+          <span class="float-food f3">🥕</span>
+          <span class="float-food f4">🍌</span>
+          <span class="float-food f5">🥦</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUTRISI -->
+    <section id="nutrisi">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="tag">📚 Dasar Gizi</span>
+          <h2>Kenali <span class="gradient-text">Zat Gizi</span> Tubuhmu</h2>
+          <p>Arahkan kursor (atau ketuk kartu di HP) untuk membalik dan melihat fungsi serta sumber makanannya.</p>
+        </div>
+        <div class="nutri-grid">
+          <div class="flip reveal"><div class="flip-inner">
+            <div class="flip-face flip-front c-orange"><div class="emoji">🍚</div><h3>Karbohidrat</h3><small>Sumber energi utama</small></div>
+            <div class="flip-face flip-back"><h4>Bahan Bakar Tubuh</h4><p>Diubah menjadi glukosa untuk energi otak dan otot.</p><p class="src">🍚 Nasi • 🥔 Kentang • 🍠 Ubi • 🌾 Gandum</p></div>
+          </div></div>
+          <div class="flip reveal"><div class="flip-inner">
+            <div class="flip-face flip-front c-red"><div class="emoji">🍗</div><h3>Protein</h3><small>Pembangun tubuh</small></div>
+            <div class="flip-face flip-back"><h4>Bangun & Perbaiki Sel</h4><p>Membentuk otot, jaringan, enzim, dan menjaga daya tahan tubuh.</p><p class="src">🥚 Telur • 🐟 Ikan • 🫘 Tempe • 🍗 Ayam</p></div>
+          </div></div>
+          <div class="flip reveal"><div class="flip-inner">
+            <div class="flip-face flip-front c-yellow"><div class="emoji">🥑</div><h3>Lemak Sehat</h3><small>Cadangan & pelindung</small></div>
+            <div class="flip-face flip-back"><h4>Lemak yang Baik</h4><p>Membantu penyerapan vitamin A, D, E, K dan menjaga kesehatan jantung.</p><p class="src">🥑 Alpukat • 🥜 Kacang • 🐟 Ikan salmon</p></div>
+          </div></div>
+          <div class="flip reveal"><div class="flip-inner">
+            <div class="flip-face flip-front c-green"><div class="emoji">🥦</div><h3>Vitamin</h3><small>Pelindung tubuh</small></div>
+            <div class="flip-face flip-back"><h4>Jaga Imun & Mata</h4><p>Dibutuhkan dalam jumlah kecil, tetapi penting untuk banyak fungsi tubuh.</p><p class="src">🍊 Jeruk • 🥕 Wortel • 🥬 Bayam</p></div>
+          </div></div>
+          <div class="flip reveal"><div class="flip-inner">
+            <div class="flip-face flip-front c-purple"><div class="emoji">🥛</div><h3>Mineral</h3><small>Tulang & saraf kuat</small></div>
+            <div class="flip-face flip-back"><h4>Kalsium, Zat Besi, dll.</h4><p>Menguatkan tulang, membawa oksigen dalam darah, dan membantu saraf.</p><p class="src">🥛 Susu • 🐟 Ikan teri • 🥬 Sayur hijau</p></div>
+          </div></div>
+          <div class="flip reveal"><div class="flip-inner">
+            <div class="flip-face flip-front c-blue"><div class="emoji">💧</div><h3>Air & Serat</h3><small>Lancarkan pencernaan</small></div>
+            <div class="flip-face flip-back"><h4>Segar & Lancar</h4><p>Air menjaga suhu dan fungsi organ. Serat melancarkan pencernaan.</p><p class="src">💧 Air putih • 🍎 Buah • 🥗 Sayur</p></div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ISI PIRINGKU -->
+    <section>
+      <div class="container piringku">
+        <div class="reveal"><div class="pie" aria-label="Diagram Isi Piringku"></div></div>
+        <div class="reveal">
+          <div class="section-title" style="text-align:left;margin-bottom:26px;">
+            <span class="tag">🍽️ Pedoman Gizi Seimbang</span>
+            <h2>Konsep <span class="gradient-warm">Isi Piringku</span></h2>
+            <p style="margin-inline:0;">Panduan sederhana dari Kemenkes RI untuk porsi makan dalam satu piring.</p>
+          </div>
+          <div class="legend">
+            <div class="card legend-item"><div class="dot" style="background:rgba(34,197,94,.2)">🥗</div><div><h4>Sayur & Buah — sekitar 50%</h4><p>Sayur sedikit lebih banyak dari buah. Pilih beragam warna.</p></div></div>
+            <div class="card legend-item"><div class="dot" style="background:rgba(255,122,69,.2)">🍚</div><div><h4>Makanan Pokok — sekitar 33%</h4><p>Nasi, kentang, jagung, ubi — jangan lupa variasi.</p></div></div>
+            <div class="card legend-item"><div class="dot" style="background:rgba(239,68,68,.2)">🍗</div><div><h4>Lauk Pauk — sekitar 17%</h4><p>Ikan, telur, tempe, tahu, ayam. Perbanyak protein nabati & ikan.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLATE BUILDER -->
+    <section id="piring">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="tag">🎮 Interaktif</span>
+          <h2>Susun <span class="gradient-text">Piring Sehatmu</span></h2>
+          <p>Pilih makanan untuk ditaruh di piring. Perhatikan indikator gizi dan dapatkan saran langsung!</p>
+        </div>
+        <div class="builder">
+          <div class="card panel reveal">
+            <h3>🛒 Pilih Makananmu</h3>
+            <p>Ketuk makanan untuk menambahkannya ke piring.</p>
+            <div class="tabs" id="foodTabs"></div>
+            <div class="food-grid" id="foodGrid"></div>
+          </div>
+          <div class="card panel reveal">
+            <h3>🍽️ Piringmu</h3>
+            <div class="plate-wrap"><div class="plate" id="plate"></div></div>
+            <div class="meters">
+              <div class="meter-row m-karbo"><span>🍚 Karbo</span><div class="bar"><i id="bar-karbo"></i></div><span id="pct-karbo">0%</span></div>
+              <div class="meter-row m-protein"><span>🍗 Protein</span><div class="bar"><i id="bar-protein"></i></div><span id="pct-protein">0%</span></div>
+              <div class="meter-row m-sayur"><span>🥦 Sayur</span><div class="bar"><i id="bar-sayur"></i></div><span id="pct-sayur">0%</span></div>
+              <div class="meter-row m-buah"><span>🍎 Buah</span><div class="bar"><i id="bar-buah"></i></div><span id="pct-buah">0%</span></div>
+            </div>
+            <div class="plate-info">
+              <div class="kcal">🔥 Total: <span id="kcal">0</span> kkal</div>
+              <button class="btn-small" id="clearPlate">🗑️ Kosongkan</button>
+            </div>
+            <div class="feedback" id="feedback">Mulai pilih makanan di sebelah kiri 👈</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BMI -->
+    <section id="bmi">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="tag">📏 Kenali Dirimu</span>
+          <h2>Cek <span class="gradient-warm">Status Gizi</span> (BMI)</h2>
+          <p>Geser slider untuk mengetahui Indeks Massa Tubuh dan kebutuhan air harianmu.</p>
+        </div>
+        <div class="calc">
+          <div class="card panel reveal">
+            <h3>⚙️ Masukkan Data</h3>
+            <p>Kategori mengacu pada standar Kemenkes RI untuk dewasa.</p>
+            <div class="field"><label>Berat badan: <output id="wOut">60</output> kg</label><input type="range" id="weight" min="30" max="150" value="60" /></div>
+            <div class="field"><label>Tinggi badan: <output id="hOut">165</output> cm</label><input type="range" id="height" min="120" max="210" value="165" /></div>
+            <p class="tips-mini">⚠️ BMI hanya gambaran awal untuk orang dewasa, bukan diagnosis. Untuk anak, remaja, ibu hamil, atau atlet, konsultasikan ke tenaga kesehatan.</p>
+          </div>
+          <div class="card panel result reveal">
+            <div class="bmi-num gradient-text" id="bmiNum">22.0</div>
+            <span class="bmi-cat" id="bmiCat">Normal</span>
+            <div class="scale"><div class="pin" id="pin"></div></div>
+            <div class="scale-labels"><span>Kurus</span><span>Normal</span><span>Gemuk</span><span>Obesitas</span></div>
+            <div class="chips">
+              <span class="chip" id="idealChip">⚖️ Berat ideal: -</span>
+              <span class="chip" id="waterChip">💧 Air: -</span>
+            </div>
+            <p class="tips-mini" id="bmiTip"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WATER -->
+    <section>
+      <div class="container">
+        <div class="card water reveal">
+          <h2>💧 Tantangan Minum <span class="gradient-text">Hari Ini</span></h2>
+          <p style="color:var(--muted)">Ketuk gelas setiap kali kamu minum (1 gelas ± 250 ml). Targetnya 8 gelas!</p>
+          <div class="glasses" id="glasses"></div>
+          <p class="water-msg" id="waterMsg">0 / 8 gelas</p>
+          <button class="btn-small" id="waterReset" style="margin-top:14px">↺ Ulangi</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="kuis">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="tag">🧠 Uji Pengetahuan</span>
+          <h2>Kuis <span class="gradient-text">Gizi Seru</span></h2>
+          <p>5 pertanyaan singkat. Berapa skor yang bisa kamu raih?</p>
+        </div>
+        <div class="card quiz reveal" id="quizBox"></div>
+      </div>
+    </section>
+
+    <!-- MITOS -->
+    <section id="mitos">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="tag">🕵️ Cek Fakta</span>
+          <h2>Mitos vs <span class="gradient-warm">Fakta</span></h2>
+          <p>Ketuk kartu untuk membongkar kebenarannya.</p>
+        </div>
+        <div class="myth-grid" id="mythGrid"></div>
+      </div>
+    </section>
+
+    <!-- TIPS -->
+    <section>
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="tag">🌟 Kebiasaan Baik</span>
+          <h2>Tips Sehat <span class="gradient-text">Setiap Hari</span></h2>
+        </div>
+        <div class="tips">
+          <div class="card tip reveal"><span class="e">🌅</span><h4>Jangan Skip Sarapan</h4><p>Beri energi untuk memulai hari dan membantu konsentrasi.</p></div>
+          <div class="card tip reveal"><span class="e">🌈</span><h4>Makan Warna-warni</h4><p>Semakin beragam warna sayur & buah, semakin lengkap zat gizinya.</p></div>
+          <div class="card tip reveal"><span class="e">🧂</span><h4>Batasi Gula, Garam, Minyak</h4><p>Baca label kemasan dan pilih olahan yang direbus, kukus, atau panggang.</p></div>
+          <div class="card tip reveal"><span class="e">🏃</span><h4>Aktif Bergerak</h4><p>Gabungkan makan sehat dengan olahraga minimal 150 menit per minggu.</p></div>
+          <div class="card tip reveal"><span class="e">🧼</span><h4>Jaga Kebersihan</h4><p>Cuci tangan dan cuci bahan makanan sebelum diolah.</p></div>
+          <div class="card tip reveal"><span class="e">😴</span><h4>Tidur Cukup</h4><p>Kurang tidur bisa memicu rasa lapar berlebih dan keinginan ngemil.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2>Siap jadi generasi sehat? 🚀</h2>
+        <p>Mulai dari satu piring seimbang hari ini, hasilnya terasa untuk jangka panjang.</p>
+        <a href="#piring" class="btn">Susun Piringku Sekarang</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="logo">🥗 <span>NutriPlate</span></div>
+      <p>Dibuat dengan 💚 untuk edukasi gizi. Informasi bersifat umum, bukan pengganti saran dokter/ahli gizi.</p>
+      <p style="margin-top:6px">© <span id="year"></span> NutriPlate</p>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Kembali ke atas">↑</button>
+  <div class="toast" id="toast"></div>
+
+  <script>
+    /* ---------- Helpers ---------- */
+    const $ = (s, el = document) => el.querySelector(s);
+    const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+    const store = {
+      get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+      set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+    };
+    let toastTimer;
+    function toast(msg) {
+      const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+      clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+    }
+    function confetti(emojis = ['🥦', '🍎', '🥕', '🍊', '🍇', '⭐', '🎉'], n = 36) {
+      for (let i = 0; i < n; i++) {
+        const c = document.createElement('span');
+        c.className = 'confetti';
+        c.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        c.style.left = Math.random() * 100 + 'vw';
+        c.style.animationDuration = 2 + Math.random() * 2.5 + 's';
+        c.style.fontSize = 1.1 + Math.random() * 1.4 + 'rem';
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 5000);
+      }
+    }
+
+    /* ---------- Theme ---------- */
+    const themeBtn = $('#themeBtn');
+    function setTheme(t) {
+      document.documentElement.setAttribute('data-theme', t);
+      themeBtn.textContent = t === 'dark' ? '☀️' : '🌙';
+      store.set('np-theme', t);
+    }
+    setTheme(store.get('np-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+    themeBtn.addEventListener('click', () => setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+
+    /* ---------- Nav ---------- */
+    $('#menuBtn').addEventListener('click', () => $('#navLinks').classList.toggle('open'));
+    $$('#navLinks a').forEach(a => a.addEventListener('click', () => $('#navLinks').classList.remove('open')));
+    const navAnchors = $$('#navLinks a');
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    navAnchors.forEach(a => { const s = $(a.getAttribute('href')); if (s) spy.observe(s); });
+
+    const toTop = $('#toTop');
+    toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+    addEventListener('scroll', () => toTop.classList.toggle('show', scrollY > 600), { passive: true });
+    $('#year').textContent = new Date().getFullYear();
+
+    /* ---------- Reveal on scroll ---------- */
+    const rev = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); rev.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    $$('.reveal').forEach((el, i) => { el.style.transitionDelay = (i % 4) * 0.08 + 's'; rev.observe(el); });
+
+    /* ---------- Counter ---------- */
+    $$('[data-count]').forEach(el => {
+      const target = +el.dataset.count, suf = el.dataset.suffix || '+';
+      let cur = 0; const step = Math.max(1, Math.ceil(target / 40));
+      const t = setInterval(() => {
+        cur = Math.min(target, cur + step); el.textContent = cur + suf;
+        if (cur >= target) clearInterval(t);
+      }, 40);
+    });
+
+    /* ---------- Flip cards (touch) ---------- */
+    $$('.flip').forEach(f => f.addEventListener('click', () => f.classList.toggle('flipped')));
+
+    /* ---------- Plate builder ---------- */
+    const FOODS = {
+      karbo: { label: '🍚 Pokok', items: [
+        ['🍚', 'Nasi', 130], ['🥔', 'Kentang', 90], ['🍠', 'Ubi', 110], ['🌽', 'Jagung', 100], ['🍞', 'Roti gandum', 80], ['🍜', 'Mie', 190]] },
+      protein: { label: '🍗 Lauk', items: [
+        ['🥚', 'Telur', 75], ['🐟', 'Ikan', 140], ['🍗', 'Ayam', 165], ['🫘', 'Tempe', 150], ['🦐', 'Udang', 100], ['🥩', 'Daging', 200]] },
+      sayur: { label: '🥦 Sayur', items: [
+        ['🥦', 'Brokoli', 35], ['🥕', 'Wortel', 40], ['🥬', 'Bayam', 25], ['🍅', 'Tomat', 20], ['🥒', 'Timun', 15], ['🍆', 'Terong', 25]] },
+      buah: { label: '🍎 Buah', items: [
+        ['🍎', 'Apel', 60], ['🍌', 'Pisang', 90], ['🍊', 'Jeruk', 50], ['🍉', 'Semangka', 45], ['🥭', 'Mangga', 65], ['🍓', 'Stroberi', 30]] },
+      junk: { label: '🍔 Jajanan', items: [
+        ['🍔', 'Burger', 350], ['🍟', 'Kentang goreng', 320], ['🍩', 'Donat', 300], ['🥤', 'Soda', 140], ['🍕', 'Pizza', 285], ['🍦', 'Es krim', 210]] }
+    };
+    const TARGET = { karbo: 2, protein: 2, sayur: 3, buah: 1 };
+    const MAX_ITEMS = 12;
+    let plate = [];
+    let currentTab = 'karbo';
+    let celebrated = false;
+
+    function renderTabs() {
+      const wrap = $('#foodTabs'); wrap.innerHTML = '';
+      Object.entries(FOODS).forEach(([k, v]) => {
+        const b = document.createElement('button');
+        b.className = 'tab' + (k === currentTab ? ' active' : '');
+        b.textContent = v.label;
+        b.onclick = () => { currentTab = k; renderTabs(); renderFoods(); };
+        wrap.appendChild(b);
+      });
+    }
+    function renderFoods() {
+      const g = $('#foodGrid'); g.innerHTML = '';
+      FOODS[currentTab].items.forEach(([e, n, k]) => {
+        const b = document.createElement('button');
+        b.className = 'food';
+        b.innerHTML = `<span class="e">${e}</span><span class="n">${n}</span><span class="k">${k} kkal</span>`;
+        b.onclick = () => addFood(currentTab, e, n, k);
+        g.appendChild(b);
+      });
+    }
+    function addFood(cat, e, n, k) {
+      if (plate.length >= MAX_ITEMS) return toast('Piringnya sudah penuh! 🍽️');
+      plate.push({ cat, e, n, k });
+      updatePlate();
+    }
+    function updatePlate() {
+      const p = $('#plate'); p.innerHTML = '';
+      if (!plate.length) p.innerHTML = '<div class="empty">Piring masih kosong 🍽️</div>';
+      plate.forEach((f, i) => {
+        const s = document.createElement('span');
+        s.className = 'item'; s.textContent = f.e; s.title = `${f.n} (klik untuk hapus)`;
+        s.onclick = () => { plate.splice(i, 1); updatePlate(); };
+        p.appendChild(s);
+      });
+      const count = c => plate.filter(f => f.cat === c).length;
+      Object.keys(TARGET).forEach(c => {
+        const pct = Math.min(100, Math.round(count(c) / TARGET[c] * 100));
+        $('#bar-' + c).style.width = pct + '%';
+        $('#pct-' + c).textContent = pct + '%';
+      });
+      $('#kcal').textContent = plate.reduce((a, f) => a + f.k, 0);
+      giveFeedback(count);
+    }
+    function giveFeedback(count) {
+      const fb = $('#feedback'); fb.className = 'feedback';
+      if (!plate.length) { fb.textContent = 'Mulai pilih makanan di sebelah kiri 👈'; celebrated = false; return; }
+      const junk = count('junk');
+      const missing = Object.keys(TARGET).filter(c => count(c) < TARGET[c]);
+      const names = { karbo: 'makanan pokok 🍚', protein: 'lauk protein 🍗', sayur: 'sayuran 🥦', buah: 'buah 🍎' };
+      if (junk >= 2) { fb.classList.add('warn'); fb.textContent = `Hati-hati, ada ${junk} jajanan tinggi gula/lemak. Boleh sesekali, tapi jangan jadi kebiasaan ya! 🍔`; celebrated = false; return; }
+      if (!missing.length && junk === 0) {
+        fb.classList.add('great'); fb.textContent = '🎉 Luar biasa! Piringmu seimbang: ada pokok, lauk, sayur, dan buah.';
+        if (!celebrated) { confetti(); celebrated = true; } return;
+      }
+      celebrated = false;
+      if (junk === 1) { fb.classList.add('warn'); fb.textContent = 'Satu jajanan masih oke sesekali. Seimbangkan dengan sayur dan buah ya! 🥗'; return; }
+      fb.textContent = `Tambahkan lagi ${names[missing[0]]} supaya piringmu lebih seimbang.`;
+    }
+    $('#clearPlate').onclick = () => { plate = []; updatePlate(); };
+    renderTabs(); renderFoods(); updatePlate();
+
+    /* ---------- BMI ---------- */
+    const wIn = $('#weight'), hIn = $('#height');
+    function calcBMI() {
+      const w = +wIn.value, h = +hIn.value / 100;
+      $('#wOut').textContent = w; $('#hOut').textContent = hIn.value;
+      const bmi = w / (h * h);
+      $('#bmiNum').textContent = bmi.toFixed(1);
+      let cat, color, tip;
+      if (bmi < 17) { cat = 'Sangat Kurus'; color = '#3ea6ff'; tip = 'Perbanyak asupan energi & protein bergizi, dan konsultasikan ke ahli gizi.'; }
+      else if (bmi < 18.5) { cat = 'Kurus'; color = '#3ea6ff'; tip = 'Tambah porsi makan bergizi: pokok, lauk protein, dan camilan sehat seperti kacang & buah.'; }
+      else if (bmi <= 25) { cat = 'Normal'; color = '#22c55e'; tip = 'Pertahankan! Terus jaga pola makan seimbang dan aktif bergerak. 👏'; }
+      else if (bmi <= 27) { cat = 'Gemuk'; color = '#f5b301'; tip = 'Kurangi gula, gorengan, dan minuman manis. Perbanyak sayur & aktivitas fisik.'; }
+      else { cat = 'Obesitas'; color = '#ef4444'; tip = 'Disarankan berkonsultasi dengan dokter/ahli gizi untuk rencana makan yang aman.'; }
+      const badge = $('#bmiCat'); badge.textContent = cat; badge.style.background = color;
+      $('#bmiTip').textContent = tip;
+      const pos = Math.max(0, Math.min(100, (bmi - 15) / 20 * 100));
+      $('#pin').style.left = pos + '%';
+      const lo = (18.5 * h * h).toFixed(0), hi = (25 * h * h).toFixed(0);
+      $('#idealChip').textContent = `⚖️ Berat ideal: ${lo}–${hi} kg`;
+      $('#waterChip').textContent = `💧 Air: ± ${(w * 0.035).toFixed(1)} liter/hari`;
+    }
+    wIn.addEventListener('input', calcBMI); hIn.addEventListener('input', calcBMI); calcBMI();
+
+    /* ---------- Water tracker ---------- */
+    const todayKey = 'np-water-' + new Date().toISOString().slice(0, 10);
+    let water = parseInt(store.get(todayKey) || '0', 10) || 0;
+    const glassWrap = $('#glasses');
+    for (let i = 0; i < 8; i++) {
+      const g = document.createElement('button');
+      g.className = 'glass'; g.setAttribute('aria-label', 'Gelas ' + (i + 1)); g.innerHTML = '<span>💧</span>';
+      g.onclick = () => { water = (water === i + 1) ? i : i + 1; renderWater(true); };
+      glassWrap.appendChild(g);
+    }
+    function renderWater(save) {
+      $$('.glass').forEach((g, i) => g.classList.toggle('full', i < water));
+      const msgs = ['Yuk mulai minum! 🚰', 'Awal yang bagus!', 'Terus semangat!', 'Hampir separuh!', 'Setengah jalan! 💪', 'Lanjutkan!', 'Sedikit lagi!', 'Tinggal satu gelas lagi!', '🎉 Target tercapai! Tubuhmu terhidrasi.'];
+      $('#waterMsg').textContent = `${water} / 8 gelas • ${water * 250} ml — ${msgs[water]}`;
+      if (save) { store.set(todayKey, water); if (water === 8) confetti(['💧', '💦', '🎉'], 28); }
+    }
+    $('#waterReset').onclick = () => { water = 0; renderWater(true); };
+    renderWater(false);
+
+    /* ---------- Quiz ---------- */
+    const QUIZ = [
+      { q: 'Zat gizi apa yang menjadi sumber energi utama bagi tubuh?', o: ['Karbohidrat', 'Vitamin', 'Mineral', 'Serat'], a: 0, e: 'Karbohidrat diubah menjadi glukosa yang dipakai otak dan otot sebagai bahan bakar.' },
+      { q: 'Dalam konsep "Isi Piringku", bagian terbesar piring diisi oleh…', o: ['Nasi', 'Sayur & buah', 'Daging', 'Gorengan'], a: 1, e: 'Sayur dan buah mengisi sekitar setengah piring karena kaya vitamin, mineral, dan serat.' },
+      { q: 'Manakah yang merupakan sumber protein nabati?', o: ['Kentang', 'Apel', 'Tempe', 'Roti tawar'], a: 2, e: 'Tempe dari kedelai kaya protein, dan lebih sehat lagi jika dikukus atau dipanggang.' },
+      { q: 'Berapa kebutuhan air putih yang umum dianjurkan untuk dewasa per hari?', o: ['1 gelas', 'Sekitar 8 gelas (±2 liter)', '15 gelas', 'Tidak perlu minum jika tidak haus'], a: 1, e: 'Kebutuhan tiap orang berbeda, tetapi sekitar 2 liter per hari adalah patokan umum.' },
+      { q: 'Vitamin C paling banyak ditemukan pada…', o: ['Jeruk & jambu biji', 'Nasi putih', 'Minyak goreng', 'Gula pasir'], a: 0, e: 'Jeruk, jambu biji, dan paprika kaya vitamin C yang membantu daya tahan tubuh.' }
+    ];
+    let qi = 0, score = 0;
+    const qbox = $('#quizBox');
+    function renderQuiz() {
+      if (qi >= QUIZ.length) return renderResult();
+      const Q = QUIZ[qi];
+      qbox.innerHTML = `
+        <div class="quiz-top"><span>Pertanyaan ${qi + 1} / ${QUIZ.length}</span><span>⭐ Skor: ${score}</span></div>
+        <div class="progress"><i style="width:${(qi / QUIZ.length) * 100}%"></i></div>
+        <h3 class="q-text">${Q.q}</h3>
+        <div class="options">${Q.o.map((t, i) => `<button class="option" data-i="${i}"><b>${'ABCD'[i]}</b>${t}</button>`).join('')}</div>
+        <div class="explain" id="explain"></div>
+        <div class="quiz-next" id="qNext"><button class="btn btn-primary">${qi === QUIZ.length - 1 ? 'Lihat Hasil 🏆' : 'Lanjut →'}</button></div>`;
+      $$('.option', qbox).forEach(btn => btn.onclick = () => answer(+btn.dataset.i));
+      $('#qNext button').onclick = () => { qi++; renderQuiz(); };
+    }
+    function answer(i) {
+      const Q = QUIZ[qi]; const ok = i === Q.a;
+      if (ok) score++;
+      $$('.option', qbox).forEach((b, idx) => {
+        b.disabled = true;
+        if (idx === Q.a) b.classList.add('correct');
+        else if (idx === i) b.classList.add('wrong');
+      });
+      const ex = $('#explain'); ex.classList.add('show');
+      ex.innerHTML = `${ok ? '✅ <b>Benar!</b>' : '❌ <b>Belum tepat.</b>'} ${Q.e}`;
+      $('#qNext').classList.add('show');
+      if (ok) toast('Keren! +1 poin ⭐');
+    }
+    function renderResult() {
+      const pct = score / QUIZ.length;
+      const [emoji, title, msg] = pct === 1 ? ['🏆', 'Master Gizi!', 'Sempurna! Kamu paham betul soal makanan sehat.']
+        : pct >= 0.6 ? ['🌟', 'Pintar Banget!', 'Hasil bagus! Sedikit lagi jadi ahli gizi.']
+        : ['🌱', 'Terus Belajar!', 'Tidak apa-apa, pelajari lagi bagian Nutrisi di atas lalu coba lagi.'];
+      qbox.innerHTML = `
+        <div class="progress"><i style="width:100%"></i></div>
+        <div class="final"><div class="big">${emoji}</div><h3 class="gradient-text">${title}</h3>
+        <p>Skormu <b>${score} / ${QUIZ.length}</b>. ${msg}</p>
+        <button class="btn btn-primary" id="retry">🔄 Main Lagi</button></div>`;
+      if (pct >= 0.6) confetti();
+      $('#retry').onclick = () => { qi = 0; score = 0; renderQuiz(); };
+    }
+    renderQuiz();
+
+    /* ---------- Myths ---------- */
+    const MYTHS = [
+      ['Makan malam bikin gemuk.', 'Yang memengaruhi berat badan adalah total kalori dalam sehari dan jenis makanannya, bukan semata jam makannya. Hindari porsi berlebihan menjelang tidur.'],
+      ['Semua lemak itu jahat.', 'Tubuh butuh lemak sehat dari alpukat, kacang, dan ikan. Yang perlu dibatasi adalah lemak jenuh dan lemak trans berlebih.'],
+      ['Jus buah sama saja dengan buah utuh.', 'Buah utuh mengandung lebih banyak serat dan membuat kenyang lebih lama. Jus, terutama yang ditambah gula, lebih cepat menaikkan gula darah.'],
+      ['Nasi putih harus dihindari total.', 'Nasi tetap sumber energi yang baik bila porsinya pas dan dipadukan dengan lauk, sayur, dan buah.'],
+      ['Sarapan tidak penting.', 'Sarapan bergizi membantu energi dan fokus, terutama bagi anak sekolah. Pilih menu seimbang, bukan hanya yang manis.'],
+      ['Makanan "rendah lemak" pasti sehat.', 'Kadang gula atau garam ditambahkan untuk menggantikan rasa. Selalu baca label informasi nilai gizi.']
+    ];
+    const mg = $('#mythGrid');
+    MYTHS.forEach(([m, f]) => {
+      const d = document.createElement('div');
+      d.className = 'card myth reveal';
+      d.innerHTML = `<span class="label">${'❌ MITOS'}</span>
+        <h4 class="claim">"${m}"</h4><p class="hint claim">👆 Ketuk untuk lihat faktanya</p>
+        <div class="fact"><h4>✅ Fakta</h4><p>${f}</p></div>`;
+      d.onclick = () => {
+        d.classList.toggle('revealed');
+        $('.label', d).textContent = d.classList.contains('revealed') ? '✅ FAKTA' : '❌ MITOS';
+      };
+      mg.appendChild(d); rev.observe(d);
+    });
+  </script>
+</body>
+</html>
