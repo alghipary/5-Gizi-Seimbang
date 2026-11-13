@@ -1,0 +1,27 @@
+/* ==========================================================
+   Halaman Mitos vs Fakta (mitos.html)
+   ========================================================== */
+
+.myth-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+
+.myth { padding: 26px; cursor: pointer; transition: 0.3s; position: relative; overflow: hidden; }
+
+.myth:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+
+.myth .label { display: inline-block; padding: 4px 14px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; margin-bottom: 12px; background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+.myth.revealed .label { background: rgba(63, 154, 63, 0.2); color: var(--green); }
+
+[data-theme="dark"] .myth.revealed .label { color: #8ddb6a; }
+
+.myth h4 { font-size: 1.1rem; margin-bottom: 8px; }
+
+.myth p { font-size: 0.88rem; color: var(--muted); }
+
+.myth .hint { font-size: 0.78rem; color: var(--accent); font-weight: 600; margin-top: 10px; display: block; }
+
+.myth .fact { display: none; }
+
+.myth.revealed .fact { display: block; animation: pop 0.35s; }
+
+.myth.revealed .claim, .myth.revealed .hint { display: none; }

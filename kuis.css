@@ -1,0 +1,53 @@
+/* ==========================================================
+   Halaman Kuis (kuis.html)
+   ========================================================== */
+
+.quiz { max-width: 760px; margin-inline: auto; padding: 36px; }
+
+.quiz-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; font-weight: 600; font-size: 0.9rem; }
+
+.progress { height: 10px; background: var(--bg-2); border-radius: 20px; overflow: hidden; margin-bottom: 26px; }
+
+.progress i { display: block; height: 100%; width: 0; background: var(--grad); transition: width 0.5s; border-radius: 20px; }
+
+.q-text { font-size: 1.4rem; margin-bottom: 22px; }
+
+.options { display: grid; gap: 12px; }
+
+.option {
+  text-align: left; padding: 16px 20px; border-radius: 18px; background: var(--surface-solid);
+  border: 2px solid var(--border); font-size: 0.98rem; font-weight: 500; color: var(--text);
+  transition: 0.25s; display: flex; gap: 14px; align-items: center;
+}
+
+.option b { width: 32px; height: 32px; border-radius: 50%; background: var(--bg-2); display: grid; place-items: center; flex-shrink: 0; font-size: 0.85rem; }
+
+.option:hover:not(:disabled) { border-color: var(--primary); transform: translateX(6px); }
+
+.option.correct { background: rgba(63, 154, 63, 0.2); border-color: var(--green); animation: pulse 0.5s; }
+
+.option.wrong { background: rgba(239, 68, 68, 0.15); border-color: #ef4444; animation: shake 0.4s; }
+
+.option:disabled { cursor: default; }
+
+@keyframes shake { 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+
+@keyframes pulse { 50% { transform: scale(1.03); } }
+
+.explain { margin-top: 18px; padding: 14px 18px; border-radius: 16px; background: var(--bg-2); font-size: 0.9rem; display: none; }
+
+.explain.show { display: block; animation: pop 0.3s; }
+
+.quiz-next { margin-top: 20px; text-align: right; display: none; }
+
+.quiz-next.show { display: block; }
+
+.final { text-align: center; }
+
+.final .big { font-size: 5rem; }
+
+.final h3 { font-size: 2rem; margin: 6px 0; }
+
+.final p { color: var(--muted); margin-bottom: 20px; }
+
+@media (max-width: 520px) { .quiz { padding: 22px; } }

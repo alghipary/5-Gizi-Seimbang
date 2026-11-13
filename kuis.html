@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Uji pengetahuan gizimu lewat kuis singkat." />
+  <title>Kuis • NutriPlate</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥗</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="kuis.css" />
+</head>
+<body>
+
+  <!-- Background -->
+  <div class="blobs" aria-hidden="true">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <a href="index.html" class="logo">🥗 <span>NutriPlate</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="nutrisi.html">Nutrisi</a></li>
+      <li><a href="piring.html">Susun Piring</a></li>
+      <li><a href="bmi.html">Cek BMI</a></li>
+      <li><a href="kuis.html" class="active">Kuis</a></li>
+      <li><a href="mitos.html">Mitos</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn theme-logo" id="themeBtn" aria-label="Ganti tema"><img src="logo-sman71.png" alt="Logo SMAN 71" /></button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+<section class="page-top" id="kuis">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="tag">🧠 Uji Pengetahuan</span>
+          <h2>Kuis <span class="gradient-text">Gizi Seru</span></h2>
+          <p>5 pertanyaan singkat. Berapa skor yang bisa kamu raih?</p>
+        </div>
+        <div class="card quiz reveal" id="quizBox"></div>
+      </div>
+    </section>
+    <div class="container page-next"><a href="mitos.html" class="btn btn-primary">Lanjut: Mitos vs Fakta →</a></div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="logo">🥗 <span>NutriPlate</span></div>
+      <p>Dibuat dengan 💚 untuk edukasi gizi. Informasi bersifat umum, bukan pengganti saran dokter/ahli gizi.</p>
+      <p style="margin-top:6px">Foto makanan dari <a href="https://unsplash.com/id/s/foto/makanan" target="_blank" rel="noopener" style="text-decoration:underline">Unsplash</a></p>
+      <p style="margin-top:6px">© <span id="year"></span> NutriPlate</p>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Kembali ke atas">↑</button>
+  <div class="toast" id="toast"></div>
+
+  <script src="common.js"></script>
+  <script src="kuis.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+/* ==========================================================
+   Halaman Nutrisi (nutrisi.html): kartu zat gizi
+   ========================================================== */
+
+.nutri-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+
+.flip { perspective: 1000px; height: 280px; cursor: pointer; }
+
+.flip-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1); transform-style: preserve-3d; }
+
+.flip:hover .flip-inner, .flip.flipped .flip-inner { transform: rotateY(180deg); }
+
+.flip-face {
+  position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center; box-shadow: var(--shadow);
+}
+
+.flip-front { color: #fff; }
+
+.flip-front .emoji { font-size: 4.2rem; margin-bottom: 10px; filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.2)); }
+
+.flip-front h3 { font-size: 1.4rem; }
+
+.flip-front small { opacity: 0.9; margin-top: 6px; }
+
+.flip-back { background: var(--surface-solid); border: 2px solid var(--border); transform: rotateY(180deg); font-size: 0.9rem; }
+
+.flip-back h4 { margin-bottom: 8px; color: var(--primary-dark); font-size: 1.1rem; }
+
+[data-theme="dark"] .flip-back h4 { color: var(--primary); }
+
+.flip-back p { color: var(--muted); margin-bottom: 8px; }
+
+.flip-back .src { font-weight: 600; font-size: 0.85rem; }
+
+.c-green { background: linear-gradient(135deg, #3f9a3f, #6cc04a); }
+
+.c-orange { background: linear-gradient(135deg, #f08a24, #f7b733); }
+
+.c-red { background: linear-gradient(135deg, #e24a3a, #ef6b4a); }
+
+.c-yellow { background: linear-gradient(135deg, #f5b301, #ffd93d); }
+
+.c-purple { background: linear-gradient(135deg, #a0522d, #d98a4e); }
+
+.c-blue { background: linear-gradient(135deg, #3ea6ff, #67e8f9); }
+
+.flip-front .emoji .fi { filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.25)); }
+.flip-front .emoji .fi-photo { border-radius: 24%; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); filter: none; }

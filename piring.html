@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Susun piring sehatmu dan pelajari konsep Isi Piringku." />
+  <title>Susun Piring • NutriPlate</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥗</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="piring.css" />
+</head>
+<body>
+
+  <!-- Background -->
+  <div class="blobs" aria-hidden="true">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <a href="index.html" class="logo">🥗 <span>NutriPlate</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="nutrisi.html">Nutrisi</a></li>
+      <li><a href="piring.html" class="active">Susun Piring</a></li>
+      <li><a href="bmi.html">Cek BMI</a></li>
+      <li><a href="kuis.html">Kuis</a></li>
+      <li><a href="mitos.html">Mitos</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn theme-logo" id="themeBtn" aria-label="Ganti tema"><img src="logo-sman71.png" alt="Logo SMAN 71" /></button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+<section class="page-top">
+      <div class="container piringku">
+        <div class="reveal"><div class="pie" aria-label="Diagram Isi Piringku"></div></div>
+        <div class="reveal">
+          <div class="section-title" style="text-align:left;margin-bottom:26px;">
+            <span class="tag">🍽️ Pedoman Gizi Seimbang</span>
+            <h2>Konsep <span class="gradient-warm">Isi Piringku</span></h2>
+            <p style="margin-inline:0;">Panduan sederhana dari Kemenkes RI untuk porsi makan dalam satu piring.</p>
+          </div>
+          <div class="legend">
+            <div class="card legend-item"><div class="dot" style="background:rgba(34,197,94,.2)">🥗</div><div><h4>Sayur & Buah — sekitar 50%</h4><p>Sayur sedikit lebih banyak dari buah. Pilih beragam warna.</p></div></div>
+            <div class="card legend-item"><div class="dot" style="background:rgba(255,122,69,.2)">🍚</div><div><h4>Makanan Pokok — sekitar 33%</h4><p>Nasi, kentang, jagung, ubi — jangan lupa variasi.</p></div></div>
+            <div class="card legend-item"><div class="dot" style="background:rgba(239,68,68,.2)">🍗</div><div><h4>Lauk Pauk — sekitar 17%</h4><p>Ikan, telur, tempe, tahu, ayam. Perbanyak protein nabati & ikan.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="piring">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="tag">🎮 Interaktif</span>
+          <h2>Susun <span class="gradient-text">Piring Sehatmu</span></h2>
+          <p>Pilih makanan untuk ditaruh di piring. Perhatikan indikator gizi dan dapatkan saran langsung!</p>
+        </div>
+        <div class="builder">
+          <div class="card panel reveal">
+            <h3>🛒 Pilih Makananmu</h3>
+            <p>Ketuk makanan untuk menambahkannya ke piring.</p>
+            <div class="tabs" id="foodTabs"></div>
+            <div class="food-grid" id="foodGrid"></div>
+          </div>
+          <div class="card panel reveal">
+            <h3>🍽️ Piringmu</h3>
+            <div class="plate-wrap"><div class="plate" id="plate"></div></div>
+            <div class="meters">
+              <div class="meter-row m-karbo"><span>🍞 Karbo</span><div class="bar"><i id="bar-karbo"></i></div><span id="pct-karbo">0%</span></div>
+              <div class="meter-row m-protein"><span>🍗 Protein</span><div class="bar"><i id="bar-protein"></i></div><span id="pct-protein">0%</span></div>
+              <div class="meter-row m-sayur"><span>🥦 Sayur</span><div class="bar"><i id="bar-sayur"></i></div><span id="pct-sayur">0%</span></div>
+              <div class="meter-row m-buah"><span>🍎 Buah</span><div class="bar"><i id="bar-buah"></i></div><span id="pct-buah">0%</span></div>
+            </div>
+            <div class="plate-info">
+              <div class="kcal">🔥 Total: <span id="kcal">0</span> kkal</div>
+              <button class="btn-small" id="clearPlate">🗑️ Kosongkan</button>
+            </div>
+            <div class="feedback" id="feedback">Mulai pilih makanan di sebelah kiri 👈</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="container page-next"><a href="bmi.html" class="btn btn-primary">Lanjut: Cek BMI →</a></div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="logo">🥗 <span>NutriPlate</span></div>
+      <p>Dibuat dengan 💚 untuk edukasi gizi. Informasi bersifat umum, bukan pengganti saran dokter/ahli gizi.</p>
+      <p style="margin-top:6px">Foto makanan dari <a href="https://unsplash.com/id/s/foto/makanan" target="_blank" rel="noopener" style="text-decoration:underline">Unsplash</a></p>
+      <p style="margin-top:6px">© <span id="year"></span> NutriPlate</p>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Kembali ke atas">↑</button>
+  <div class="toast" id="toast"></div>
+
+  <script src="common.js"></script>
+  <script src="piring.js"></script>
+</body>
+</html>
