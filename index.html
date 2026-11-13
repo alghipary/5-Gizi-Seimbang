@@ -250,6 +250,7 @@
     <div class="container">
       <div class="logo">🥗 <span>NutriPlate</span></div>
       <p>Dibuat dengan 💚 untuk edukasi gizi. Informasi bersifat umum, bukan pengganti saran dokter/ahli gizi.</p>
+      <p style="margin-top:6px">Foto makanan dari <a href="https://unsplash.com/id/s/foto/makanan" target="_blank" rel="noopener" style="text-decoration:underline">Unsplash</a></p>
       <p style="margin-top:6px">© <span id="year"></span> NutriPlate</p>
     </div>
   </footer>
@@ -531,6 +532,64 @@
       d.querySelector('.label').textContent = '❌ MITOS';
       d.addEventListener('click', () => { d.querySelector('.label').textContent = d.classList.contains('revealed') ? '✅ FAKTA' : '❌ MITOS'; });
     });
+
+    /* ---------- Gambar makanan asli (otomatis ganti emoji -> foto) ---------- */
+    /* Taruh foto di folder img/ dengan nama sesuai daftar ini. Kalau file belum ada, emoji tetap tampil. */
+    const IMG_EXT = 'png';
+    const IMG_MAP = {
+      '🍞':'roti','🥖':'baguette','🍝':'pasta','🌾':'gandum','🥔':'kentang','🍚':'nasi',
+      '🥚':'telur','🥩':'daging','🐟':'ikan','🍗':'ayam','🥛':'susu','🫘':'tempe','🥜':'kacang',
+      '🥦':'brokoli','🥬':'selada','🥒':'timun','🌽':'jagung','🥕':'wortel','🍅':'tomat','🥑':'alpukat',
+      '🍓':'stroberi','🍊':'jeruk','🍌':'pisang','🍎':'apel','🍉':'semangka','🥭':'mangga',
+      '🍔':'burger','🍟':'kentang-goreng','🍩':'donat','🥤':'soda','🍕':'pizza','🍦':'es-krim','🍱':'piring'
+    };
+    const IMG_RE = new RegExp(Object.keys(IMG_MAP).join('|'), 'g');
+    /* Foto dari Unsplash (hotlink resmi). Item yang tidak ada di sini memakai img/<nama>.png, lalu emoji. */
+    const UNSPLASH = {
+      roti: '1484723091739-30a097e8f929', telur: '1482049016688-2d3e1b311543',
+      ayam: '1555939594-58d7cb561ad1', daging: '1555939594-58d7cb561ad1',
+      brokoli: '1590779033100-9f60a05a013d', selada: '1512621776951-a57141f2eefd',
+      wortel: '1590868309235-ea34bed7bd7f', tomat: '1662370761575-05ff1ee40d7d',
+      stroberi: '1601004890684-d8cbf643f5f2', jeruk: '1557800636-894a64c1696f',
+      pisang: '1528825871115-3581a5387919', apel: '1764630350810-2846f769ad25',
+      alpukat: '1523049673857-eb18f1d7b578', pizza: '1565299624946-b28f40a0ae38',
+      'kentang-goreng': '1761934051063-1b3ea9516ed7', piring: '1546069901-ba9599a7e63c'
+    };
+    function foodImg(emoji) {
+      const name = IMG_MAP[emoji], id = UNSPLASH[name];
+      const local = `img/${name}.${IMG_EXT}`;
+      const img = document.createElement('img');
+      img.className = 'fi' + (id ? ' fi-photo' : ''); img.alt = name; img.draggable = false;
+      img.src = id ? `https://images.unsplash.com/photo-${id}?w=240&h=240&q=70&auto=format&fit=crop` : local;
+      img.onerror = () => {
+        if (id && !img.dataset.tried) { img.dataset.tried = 1; img.classList.remove('fi-photo'); img.src = local; return; }
+        const s = document.createElement('span'); s.className = 'fi-fb'; s.textContent = emoji; img.replaceWith(s);
+      };
+      return img;
+    }
+    function swapText(node) {
+      const p = node.parentElement;
+      if (!p || p.closest('script,style,title,.logo,.fi-fb')) return;
+      const s = node.nodeValue; IMG_RE.lastIndex = 0;
+      if (!IMG_RE.test(s)) return;
+      IMG_RE.lastIndex = 0;
+      const frag = document.createDocumentFragment(); let last = 0, m;
+      while ((m = IMG_RE.exec(s))) {
+        if (m.index > last) frag.appendChild(document.createTextNode(s.slice(last, m.index)));
+        frag.appendChild(foodImg(m[0])); last = m.index + m[0].length;
+      }
+      if (last < s.length) frag.appendChild(document.createTextNode(s.slice(last)));
+      node.replaceWith(frag);
+    }
+    function swapAll(root) {
+      if (root.nodeType === 3) return swapText(root);
+      if (root.nodeType !== 1) return;
+      const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), list = [];
+      while (w.nextNode()) list.push(w.currentNode);
+      list.forEach(swapText);
+    }
+    new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(swapAll))).observe(document.body, { childList: true, subtree: true });
+    swapAll(document.body);
   </script>
 </body>
 </html>
