@@ -91,3 +91,16 @@
   .hero-btns, .hero-stats { justify-content: center; }
   .hero-visual { min-height: 340px; }
 }
+
+/* Kartu menu ke halaman lain */
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+.menu-card { display: block; padding: 28px 22px; text-align: center; color: #fff; border: none; transition: 0.3s; }
+.menu-card:hover { transform: translateY(-8px) rotate(-1deg); box-shadow: var(--shadow-lg); }
+.menu-card .e { font-size: 3rem; display: block; margin-bottom: 8px; }
+.menu-card h3 { font-weight: 400; font-size: 1.4rem; margin-bottom: 4px; }
+.menu-card p { font-size: 0.85rem; opacity: 0.95; }
+.menu-card.m1 { background: linear-gradient(135deg, #f08a24, #f7b733); }
+.menu-card.m2 { background: linear-gradient(135deg, #3f9a3f, #6cc04a); }
+.menu-card.m3 { background: linear-gradient(135deg, #e24a3a, #ef6b4a); }
+.menu-card.m4 { background: linear-gradient(135deg, #a0522d, #d98a4e); }
+.menu-card.m5 { background: linear-gradient(135deg, #f5b301, #ffd93d); color: #4a2410; }
